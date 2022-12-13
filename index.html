@@ -26,26 +26,19 @@
     <header class="p-5 mb-4 text-center header">
         <h1>Weather Dashboard</h1>
     </header>
-    <main class="row container-fluid">
+
+    <main class="flex-row justify-space-between container-fluid">
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <h3 class="card-header text-uppercase">Seach For City</h3>
+                <form id="cityInput" class="card-body">
+                  <label class="form-label" for="search">Search: </label>
+                  <input name="city" id="locationInput" type="text" autofocus="true" class="form-input" placeholder="Type to search city..."/>
+                  <button type="submit" class="col-md-4 btn">Search</button>
+                </form>
+              </div>
+        </div>
             
-        <div class="col-md-4">
-            <label class="form-label">Search for a city</label>
-            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-            <button>Search</button>
-            <datalist id="datalistOptions">
-                <option value="San Francisco">
-                <option value="New York">
-                <option value="Seattle">
-                <option value="Los Angeles">
-                <option value="Chicago">
-            </datalist>
-        </div>
-        <div class="locationStorage">
-            <ol>
-            </ol>
-        </div>
-
-
         <!-- make these components that get built by the javascript  -->
 
         <!-- <div class="card col-lg-6 mb-3" id="mainCard">
