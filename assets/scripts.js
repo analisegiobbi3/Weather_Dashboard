@@ -1,7 +1,7 @@
 var today = dayjs();
 var formEl = $("#cityInput");
 var btnEl = $(".btn");
-var inputEl = $("#locationInput");
+var inputEl = $("#locationInput")
 var key = "9c343e5b82dbaddad935bd1ba04a1d88";
 
 
@@ -10,59 +10,60 @@ var key = "9c343e5b82dbaddad935bd1ba04a1d88";
 // create function that takes your input and stores them in a list. This is where you can add that data attriute so they can then be passed through again
 var locationFormHandler = function (event){
     event.preventDefault();
-    var locationInput = inputEl.value.trim();
+    var locationInput = inputEl.val().trim()
     localStorage.setItem("location", locationInput);
     if (locationInput){
         getlocation(locationInput);
-        inputEl.value = '';
+        // inputEl.val() = '';
 
     }else{
-        alert("Please enter a location")
+        alert("Please enter a location");
     }
 }
 
 
-var getlocation = function (location){
-    var locationURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + location + '&appid=' + key;
+var getlocation = function (city){
+    var locationURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + key;
     fetch(locationURL).then(function(response){
-        if (response.ok){
+        response.json().then(function(data){
+            console.log(data)
             console.log(response)
-            response.json().then(function(data){
-                console.log(data)
-            })
-        }else{
-            alert('Error' + response.statusText)
-        }
+            var city = response.name;
+            var coord1 = response.lat;
+            var coord2 = response.lon;
+            console.log(coord1)
+        })
     })
     .catch(function (error) {
         alert('Unable to connect to location services');
     });
+    // getWeather(coord1, coord2);
 }
 
-formEl.addEventListener('submit', locationFormHandler);
+formEl.on('submit', locationFormHandler);
 
 
 
-// var getWeather = function (lat, lon){
-//     // you'll pass your search location through this to grab the weather data. You will need to build the weather elements to store the data
-//     // you can use the structure you already have
-//     var apiURL ='api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon +'&appid=' + key;
+var getWeather = function (lat, lon){
+    // you'll pass your search location through this to grab the weather data. You will need to build the weather elements to store the data
+    // you can use the structure you already have
+    var apiURL ='api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon +'&appid=' + key;
   
 
-//     fetch(apiURL).then(function(response){
-//         if (response.ok){
-//             console.log(response);
-//             response.json().then(function(data){
-//                 console.log(data)
-//                 //you'll create a function here that dispalys the data and you'll call your inputs 
-//             })
+    fetch(apiURL).then(function(response){
+        if (response.ok){
+            console.log(response);
+            response.json().then(function(data){
+                console.log(data)
+                //you'll create a function here that dispalys the data and you'll call your inputs 
+            })
 
-//         }else{
-//             alert("error " + response.statusText);
-//         }
+        }else{
+            alert("error " + response.statusText);
+        }
 
-//     })
-// }
+    })
+}
 
 // you'll add an event handler here to handle the search location function 
 //you might need a second event handler to handle the locations that were previously searched
