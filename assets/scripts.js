@@ -26,7 +26,7 @@ var getlocation = function (city){
     var locationURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + key;
     fetch(locationURL).then(function(response){
         response.json().then(function(data){
-            // console.log(data)
+            console.log(data)
             // console.log(response)
             var coord1 = data[0].lat;
             var coord2 = data[0].lon;
@@ -48,16 +48,21 @@ formEl.on('submit', locationFormHandler);
 //-104.984862
 
 var getWeather = function (lat, lon){
-    var apiURL = 'api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
+    var apiURL = 'http://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
 
     fetch(apiURL).then(function(response){
         response.json().then(function(data){
             console.log(data)
-            console.log(response)
+            var temp = data.list[0].main.temp;
+            var wind = data.list[0].wind.speed;
+            var humidity = data.list[0].main.humidity;
+            console.log(temp)
+            console.log(wind)
+            console.log(humidity)
         })
     })
     .catch(function (error) {
-        alert('Unable to connect to location services');
+        alert('Unable to connect to weather services');
     });
 }
 
