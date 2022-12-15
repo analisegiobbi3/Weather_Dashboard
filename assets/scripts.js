@@ -26,43 +26,45 @@ var getlocation = function (city){
     var locationURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + key;
     fetch(locationURL).then(function(response){
         response.json().then(function(data){
-            console.log(data)
-            console.log(response)
-            var city = response.name;
-            var coord1 = response.lat;
-            var coord2 = response.lon;
-            console.log(coord1)
+            // console.log(data)
+            // console.log(response)
+            var coord1 = data[0].lat;
+            var coord2 = data[0].lon;
+            // console.log(JSON.stringify(coord1))
+            // console.log(JSON.stringify(coord2))
+            coord1 = JSON.stringify(coord1)
+            coord2 = JSON.stringify(coord2)
+            getWeather(coord1, coord2)
         })
     })
     .catch(function (error) {
         alert('Unable to connect to location services');
     });
-    // getWeather(coord1, coord2);
 }
 
 formEl.on('submit', locationFormHandler);
 
-
+// 39.739236
+//-104.984862
 
 var getWeather = function (lat, lon){
-    // you'll pass your search location through this to grab the weather data. You will need to build the weather elements to store the data
-    // you can use the structure you already have
-    var apiURL ='api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon +'&appid=' + key;
-  
+    var apiURL = 'api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
 
     fetch(apiURL).then(function(response){
-        if (response.ok){
-            console.log(response);
-            response.json().then(function(data){
-                console.log(data)
-                //you'll create a function here that dispalys the data and you'll call your inputs 
-            })
-
-        }else{
-            alert("error " + response.statusText);
-        }
-
+        response.json().then(function(data){
+            console.log(data)
+            console.log(response)
+        })
     })
+    .catch(function (error) {
+        alert('Unable to connect to location services');
+    });
+}
+
+
+
+function buildWeatherInterface(){
+    //you will pull the data that you get from the getWEather function into this function to build your interface
 }
 
 // you'll add an event handler here to handle the search location function 
