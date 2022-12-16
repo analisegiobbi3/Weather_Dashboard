@@ -26,6 +26,11 @@ var locationFormHandler = function (event){
     }
 }
 
+function locationListHandler(){
+    var storedLocation = localStorage.getItem("location")
+
+}
+
 //This function takes the input from the user in the previous function
 var getlocation = function (city){
     //this url uses the input location to grab the city information, including coordinates
@@ -92,6 +97,7 @@ var getfiveDayWeatherForcast = function(lat, lon){
         response.json().then(function(data){
             //Day 2
             var dayHeader2 = today.add(1, 'day')
+            dayHeader2 = dayHeader2.format('ddd, MMM D, YYYY')
             var weatherIcon = data.list[8].weather[0].icon;
             var weatherIconURL = 'https://openweathermap.org/img/wn/'+weatherIcon+'@2x.png';
             var tempK2 = data.list[8].main.temp;
@@ -106,6 +112,7 @@ var getfiveDayWeatherForcast = function(lat, lon){
        
             //Day 3
             var dayHeader3 = today.add(2, 'day')
+            dayHeader3 = dayHeader3.format('ddd, MMM D, YYYY')
             var weatherIcon = data.list[16].weather[0].icon;
             var weatherIconURL = 'https://openweathermap.org/img/wn/'+weatherIcon+'@2x.png';
             var tempK3 = data.list[16].main.temp;
@@ -120,6 +127,7 @@ var getfiveDayWeatherForcast = function(lat, lon){
 
             //Day 4
             var dayHeader4 = today.add(3, 'day')
+            dayHeader4 = dayHeader4.format('ddd, MMM D, YYYY')
             var weatherIcon = data.list[24].weather[0].icon;
             var weatherIconURL = 'https://openweathermap.org/img/wn/'+weatherIcon+'@2x.png';
             var tempK4 = data.list[24].main.temp;
@@ -134,6 +142,7 @@ var getfiveDayWeatherForcast = function(lat, lon){
 
             //Day 5
             var dayHeader5 = today.add(4, 'day')
+            dayHeader5 = dayHeader5.format('ddd, MMM D, YYYY')
             var weatherIcon = data.list[32].weather[0].icon;
             var weatherIconURL = 'https://openweathermap.org/img/wn/'+weatherIcon+'@2x.png';
             var tempK5 = data.list[32].main.temp;
@@ -148,6 +157,7 @@ var getfiveDayWeatherForcast = function(lat, lon){
 
             //Day 6
             var dayHeader6 = today.add(5, 'day') 
+            dayHeader6 = dayHeader6.format('ddd, MMM D, YYYY')
             var weatherIcon = data.list[39].weather[0].icon;
             var weatherIconURL = 'https://openweathermap.org/img/wn/'+weatherIcon+'@2x.png';
             var tempK6 = data.list[39].main.temp;
