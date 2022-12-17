@@ -4,6 +4,8 @@ var btnEl = $(".btn");
 var inputEl = $("#locationInput");
 var todayWeatherCard = $(".todayWeather");
 var key = "9c343e5b82dbaddad935bd1ba04a1d88";
+var cityArray = [];
+var searchHistoryEl = $("#searchHistory");
 
 var todayDate = today.format('MM/DD/YYYY')
 
@@ -24,11 +26,29 @@ var locationFormHandler = function (event){
     }else{
         alert("Please enter a location");
     }
+    createCityArray()
 }
 
 function locationListHandler(){
-    var storedLocation = localStorage.getItem("location")
+    searchHistoryEl.innerHTML='';
+    searchHistoryEl.empty();
+    for (var i=0; i<cityArray.length; i++){
+        var createButton = $("<button>");
+        createButton.addClass("cityHistoryEl")
+        createButton.text(cityArray[i])
+        createButton.attr('data-name', cityArray[i])
+        $("#searchHistory").append(createButton)
+    }
+}
 
+// $(".cityHistoryEl").on("click", )
+
+function createCityArray(){
+    var cityItem =  localStorage.getItem("location");
+    if (cityItem != null){
+        cityArray.push(cityItem)
+    }
+    locationListHandler()
 }
 
 //This function takes the input from the user in the previous function
