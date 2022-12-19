@@ -29,13 +29,13 @@ THEN I am again presented with current and future conditions for that city
 ## How to Use
 
 Start by typing your city into the search bar:
+![search Bar](./assets/images/searchBar.png)
 
 You can view your city's today forecast and five day forecast:
+![Five day forecast](./assets/images/Demo.png)
 
 Your previous search should be saved in a list below the search bar:
-
-Click on a previously searched city to easily grab that data:
-
+![saved Searches](./assets/images/savedSearch.png)
 
 
 ## Link

@@ -14,6 +14,7 @@ var cityArray = [];
 var locationFormHandler = function (event){
     event.preventDefault();
     var locationInput = inputEl.val().trim()
+
     //stores the location
     localStorage.setItem("location", locationInput);
     //if a proper location is entered, it is taken and put into the location function
