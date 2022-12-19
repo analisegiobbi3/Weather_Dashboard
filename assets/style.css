@@ -3,11 +3,11 @@ header{
     color: white;
     border-style: ridge;
     border-color: #1d3557;
+    font-family: 'Fredoka One', cursive;
 }
 
 body{
     background-color: #a8dadc;
-
 }
 
 
@@ -36,12 +36,18 @@ button{
     padding-top: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+}
+
+.card-body{
+
+
 }
 
 .cityHistoryEl{
-    color: #a8dadc;
-    background-color: #457b9d;
-    border-radius: 5px;
+    color: #023e8a;
+    background-color: #a2d2ff;
+    border-radius: 10px;
     height: auto;
     width: 75%;
 }

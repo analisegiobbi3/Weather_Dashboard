@@ -26,7 +26,6 @@ var locationFormHandler = function (event){
     }
     //adds the location to the city array
     createCityArray()
-    inputEl.text = '';
 }
 
 //this function creates the buttons for the saved locations
