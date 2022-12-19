@@ -35,3 +35,11 @@ button{
     margin: 0 auto;
     padding-top: 10px;
 }
+
+.cityHistoryEl{
+    color: #a8dadc;
+    background-color: #457b9d;
+    border-radius: 5px;
+    height: auto;
+    width: 75%;
+}

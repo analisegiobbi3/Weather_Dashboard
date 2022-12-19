@@ -3,32 +3,31 @@ var formEl = $("#cityInput");
 var btnEl = $(".btn");
 var inputEl = $("#locationInput");
 var todayWeatherCard = $(".todayWeather");
-var key = "9c343e5b82dbaddad935bd1ba04a1d88";
-var cityArray = [];
 var searchHistoryEl = $("#searchHistory");
-
 var todayDate = today.format('MM/DD/YYYY')
-
-
-//use data-location data attribute to create buttons for your searches so you can clikc them again and bring up the information review one has a good example
-
-// create function that takes your input and stores them in a list. This is where you can add that data attriute so they can then be passed through again
+//api key to get into weather api
+var key = "9c343e5b82dbaddad935bd1ba04a1d88";
+//array to store saved cities
+var cityArray = [];
 
 // this function takes the input from the user and then puts it into the get location function
 var locationFormHandler = function (event){
     event.preventDefault();
     var locationInput = inputEl.val().trim()
+    //stores the location
     localStorage.setItem("location", locationInput);
+    //if a proper location is entered, it is taken and put into the location function
     if (locationInput){
         getlocation(locationInput);
-        // inputEl.val() = '';
 
     }else{
         alert("Please enter a location");
     }
+    //adds the location to the city array
     createCityArray()
 }
 
+//this function creates the buttons for the saved locations
 function locationListHandler(){
     searchHistoryEl.innerHTML='';
     searchHistoryEl.empty();
@@ -41,8 +40,7 @@ function locationListHandler(){
     }
 }
 
-// $(".cityHistoryEl").on("click", )
-
+//takes the stored locations and puts them into the city array
 function createCityArray(){
     var cityItem =  localStorage.getItem("location");
     if (cityItem != null){
@@ -50,6 +48,14 @@ function createCityArray(){
     }
     locationListHandler()
 }
+
+var savedLocationButtonHandler = function(event){
+    var savedLocation = event.target.attr('data-name');
+    getlocation(savedLocation);
+}
+
+searchHistoryEl.on('click', savedLocationButtonHandler);
+
 
 //This function takes the input from the user in the previous function
 var getlocation = function (city){
@@ -77,8 +83,6 @@ var getlocation = function (city){
 formEl.on('submit', locationFormHandler);
 
 //This function takes the lat and lon from the function above and grabs teh weather data for that location
-
-
 var getWeather = function (lat, lon){
     var apiURL = 'http://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
     fetch(apiURL).then(function(response){
@@ -99,6 +103,7 @@ var getWeather = function (lat, lon){
     });
 }
 
+//creates the main today weather display
 function todayWeatherInterface(city, temp, wind, humid, icon){
     var todayHeader = city + ": " + todayDate;
     var todayTemp = "Temp: " + temp + " °F";
@@ -111,6 +116,7 @@ function todayWeatherInterface(city, temp, wind, humid, icon){
     // $("#weatherIcon1").attr('src', icon)
 }
 
+//creates the 5 day weather forecast display
 var getfiveDayWeatherForcast = function(lat, lon){
     var fiveDay = 'http://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
     fetch(fiveDay).then(function(response){
@@ -195,8 +201,5 @@ var getfiveDayWeatherForcast = function(lat, lon){
 }
 
 
-
-// you'll add an event handler here to handle the search location function 
-//you might need a second event handler to handle the locations that were previously searched
 
 
