@@ -34,6 +34,8 @@ button{
 .card-deck{
     margin: 0 auto;
     padding-top: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 .cityHistoryEl{

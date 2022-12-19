@@ -20,11 +20,13 @@ var locationFormHandler = function (event){
     if (locationInput){
         getlocation(locationInput);
 
+
     }else{
         alert("Please enter a location");
     }
     //adds the location to the city array
     createCityArray()
+    inputEl.text = '';
 }
 
 //this function creates the buttons for the saved locations
@@ -50,7 +52,8 @@ function createCityArray(){
 }
 
 var savedLocationButtonHandler = function(event){
-    var savedLocation = event.target.attr('data-name');
+    // var savedLocation = event.target.attr('data-name');
+    var savedLocation = event.target.innerHTML;
     getlocation(savedLocation);
 }
 
