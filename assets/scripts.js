@@ -88,7 +88,7 @@ formEl.on('submit', locationFormHandler);
 
 //This function takes the lat and lon from the function above and grabs teh weather data for that location
 var getWeather = function (lat, lon){
-    var apiURL = 'http://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
+    var apiURL = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
     fetch(apiURL).then(function(response){
         response.json().then(function(data){
             console.log(data)
@@ -122,7 +122,7 @@ function todayWeatherInterface(city, temp, wind, humid, icon){
 
 //creates the 5 day weather forecast display
 var getfiveDayWeatherForcast = function(lat, lon){
-    var fiveDay = 'http://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
+    var fiveDay = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+key;
     fetch(fiveDay).then(function(response){
         response.json().then(function(data){
             //Day 2
