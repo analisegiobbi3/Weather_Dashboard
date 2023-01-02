@@ -42,6 +42,7 @@ function locationListHandler(){
     }
 }
 
+
 //takes the stored locations and puts them into the city array
 function createCityArray(){
     var cityItem =  localStorage.getItem("location");
@@ -63,7 +64,7 @@ searchHistoryEl.on('click', savedLocationButtonHandler);
 //This function takes the input from the user in the previous function
 var getlocation = function (city){
     //this url uses the input location to grab the city information, including coordinates
-    var locationURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + key;
+    var locationURL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + key;
     fetch(locationURL).then(function(response){
         //the response is used to grab the city coordinates and then put those into the weather function to grab weather info
         response.json().then(function(data){
